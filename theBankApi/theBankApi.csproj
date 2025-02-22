@@ -6,10 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Inlämningsuppgift3.Core\theBankApi.Core.csproj" />
-		<ProjectReference Include="..\theBankApi.Core\theBankApi.Core.csproj" />
-	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -20,6 +16,10 @@
 
   <ItemGroup>
     <Folder Include="Middleware\Profiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\theBankApi.Core\theBankApi.Core.csproj" />
   </ItemGroup>
 
 </Project>
