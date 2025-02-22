@@ -1,5 +1,5 @@
-﻿using Inlämningsuppgift3.Data.DataModels;
-using Inlämningsuppgift3.Data.Interfaces;
+﻿using theBankApi.Data.DataModels;
+using theBankApi.Data.Interfaces;
 using theBankApi.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Data.Repository
+namespace theBankApi.Data.Repository
 {
     public class AccountTypesRepo:IAccountTypesRepo
     {
-        private readonly Inlämningsuppgift3DBcontext db;
+        private readonly theBankApiDBcontext db;
 
-        public AccountTypesRepo(Inlämningsuppgift3DBcontext db)
+        public AccountTypesRepo(theBankApiDBcontext db)
         {
             this.db = db;
         }

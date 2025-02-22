@@ -1,10 +1,10 @@
 ﻿using Azure.Core;
-using Inlämningsuppgift3.Core.Interfaces;
 using theBankApi.Domain.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using theBankApi.Core.Interfaces;
 
-namespace Inlämningsuppgift3.Controllers
+namespace theBankApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,10 +17,15 @@ namespace Inlämningsuppgift3.Controllers
             this.service = service;
         }
 
-        [HttpGet("Login")]
-        public IActionResult Login([FromQuery] string username, string password)
+        [HttpPost("Login")] //GET -> Post now
+        public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
-            var result = service.Login(username, password);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = service.Login(loginRequest);
             if (result != null)
             {
                 return Ok(new { success = true, token = result });

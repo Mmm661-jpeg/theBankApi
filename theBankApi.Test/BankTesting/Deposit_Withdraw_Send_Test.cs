@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Inlämningsuppgift3.Controllers;
-using Inlämningsuppgift3.Core.Interfaces;
-using Inlämningsuppgift3.Core.Services;
-using Inlämningsuppgift3.Data.Interfaces;
-using Inlämningsuppgift3.Data.Repository;
+using theBankApi.Controllers;
+using theBankApi.Core.Interfaces;
+using theBankApi.Core.Services;
+using theBankApi.Data.Interfaces;
+using theBankApi.Data.Repository;
 using theBankApi.Domain.Models;
 using Microsoft.Identity.Client;
 using Moq;

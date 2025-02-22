@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Inlämningsuppgift3.Core.Interfaces;
-using Inlämningsuppgift3.Data.Interfaces;
+using theBankApi.Core.Interfaces;
+using theBankApi.Data.Interfaces;
 using theBankApi.Domain.DTOs;
 using theBankApi.Domain.Models;
 using System;
@@ -10,7 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Core.Services
+namespace theBankApi.Core.Services
 {
     public class BankService:IBankService
     {

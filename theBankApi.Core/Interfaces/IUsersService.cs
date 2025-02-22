@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Core.Interfaces
+namespace theBankApi.Core.Interfaces
 {
     public interface IUsersService
     {
         bool Register(RegisterRequest request);
 
-        string Login(string username, string password);
+        string Login(LoginRequest loginRequest); //FromBody LoginRequestDTO
     }
 }

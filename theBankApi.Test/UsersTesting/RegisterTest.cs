@@ -1,5 +1,4 @@
-﻿using Inlämningsuppgift3.Core.Services;
-using Inlämningsuppgift3.Data.Interfaces;
+﻿using theBankApi.Data.Interfaces;
 using theBankApi.Domain.Models;
 using theBankApi.Domain.Requests;
 using System;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using theBankApi.Core.Services;
 
 namespace Inlamningsuppgift3.Test.UsersTesting
 {

@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Data.DataModels
+namespace theBankApi.Data.DataModels
 {
-    public class Inlämningsuppgift3DBcontext:DbContext
+    public class theBankApiDBcontext:DbContext
     {
-        public Inlämningsuppgift3DBcontext()
+        public theBankApiDBcontext()
         {
 
         }
 
-        public Inlämningsuppgift3DBcontext(DbContextOptions<Inlämningsuppgift3DBcontext> options) : base(options) { }
+        public theBankApiDBcontext(DbContextOptions<theBankApiDBcontext> options) : base(options) { }
 
         public virtual DbSet<Users> Users { get; set; } = null!;
 
@@ -52,7 +52,7 @@ namespace Inlämningsuppgift3.Data.DataModels
                 entity.Property(e => e.Password).IsRequired()
                .HasColumnName("Password")
                .IsUnicode(false)
-               .HasMaxLength(50);
+               .HasMaxLength(72);
 
                 entity.Property(e => e.CustomerId).IsRequired()
                 .HasColumnName("CustomerId");

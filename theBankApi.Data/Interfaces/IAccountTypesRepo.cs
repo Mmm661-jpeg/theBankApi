@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Data.Interfaces
+namespace theBankApi.Data.Interfaces
 {
     public interface IAccountTypesRepo
     {

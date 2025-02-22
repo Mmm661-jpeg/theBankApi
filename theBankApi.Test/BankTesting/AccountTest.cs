@@ -1,4 +1,4 @@
-﻿using Inlämningsuppgift3.Core.Interfaces;
+﻿using theBankApi.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Moq;
-using Inlämningsuppgift3.Controllers;
+using theBankApi.Controllers;
 using theBankApi.Domain.Models;
 using theBankApi.Domain.DTOs;
 using Microsoft.AspNetCore.Http.HttpResults;

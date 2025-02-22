@@ -1,4 +1,4 @@
-﻿namespace Inlämningsuppgift3.Middleware.Extensions
+﻿namespace theBankApi.Middleware.Extensions
 {
     public static class SwaggerExtension
     {
