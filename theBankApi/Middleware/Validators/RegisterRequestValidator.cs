@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using theBankApi.Domain.Requests;
 
-namespace Inlämningsuppgift3.Middleware.Validators
+namespace theBankApi.Middleware.Validators
 {
     public class RegisterRequestValidator:AbstractValidator<RegisterRequest>
     {

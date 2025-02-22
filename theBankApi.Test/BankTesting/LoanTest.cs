@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Inlämningsuppgift3.Core.Services;
-using Inlämningsuppgift3.Data.Interfaces;
+using theBankApi.Core.Services;
+using theBankApi.Data.Interfaces;
 using theBankApi.Domain.Models;
 using System;
 using System.Collections.Generic;

@@ -1,21 +1,27 @@
 using FluentValidation.AspNetCore;
 using FluentValidation;
-using Inlämningsuppgift3.Core.Interfaces;
-using Inlämningsuppgift3.Core.Services;
-using Inlämningsuppgift3.Data.DataModels;
-using Inlämningsuppgift3.Data.Interfaces;
-using Inlämningsuppgift3.Data.Repository;
-using Inlämningsuppgift3.Middleware.Extensions;
-using Inlämningsuppgift3.Middleware.Validators;
+using theBankApi.Core.Interfaces;
+using theBankApi.Core.Services;
+using theBankApi.Data.DataModels;
+using theBankApi.Data.Interfaces;
+using theBankApi.Data.Repository;
+
+
+using theBankApi.Middleware.Validators;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.WebRequestMethods;
 
+using theBankApi.Middleware.Extensions;
+using theBankApi.Middleware.JWT;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var jwtSettings = builder.Configuration.GetSection("Jwtsettings");
+
 builder.Services.AddAuthenticationExtentsion(
-    issuer: "http://localhost:5226"
-    ,audience: "http://localhost:5226"
-    ,signingKey: "ThisIsASuperSecureKeyWithAtLeast32CharactersOrMore");
+    issuer: jwtSettings["Issuer"]
+    ,audience: jwtSettings["Audience"]
+    ,signingKey: jwtSettings["SecretKey"]);
 
 builder.Services.AddAuthorization();
 
@@ -41,12 +47,14 @@ builder.Services.AddTransient<IAccountsRepo,AccountsRepo>();
 builder.Services.AddTransient<IUsersService, UsersService>();
 builder.Services.AddTransient<IBankService, BankService>();
 
+builder.Services.AddScoped<ITokenGenerator,TokenGenerator>();
+
 
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
 
-builder.Services.AddDbContext<Inlämningsuppgift3DBcontext>(options =>
+builder.Services.AddDbContext<theBankApiDBcontext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });

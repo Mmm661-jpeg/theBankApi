@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 
-namespace Inlämningsuppgift3.Middleware.Extensions
+namespace theBankApi.Middleware.Extensions
 {
     public static class JWTExtenstion
     {

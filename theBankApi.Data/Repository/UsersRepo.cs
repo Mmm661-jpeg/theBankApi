@@ -1,28 +1,48 @@
-﻿using Inlämningsuppgift3.Data.DataModels;
-using Inlämningsuppgift3.Data.Interfaces;
+﻿using theBankApi.Data.DataModels;
+using theBankApi.Data.Interfaces;
 using theBankApi.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
-namespace Inlämningsuppgift3.Data.Repository
+namespace theBankApi.Data.Repository
 {
     public class UsersRepo:IUsersRepo
     {
-        private readonly Inlämningsuppgift3DBcontext db;
+        private readonly theBankApiDBcontext db;
+        private readonly ILogger<UsersRepo> logger;
 
-        public UsersRepo(Inlämningsuppgift3DBcontext db)
+        public UsersRepo(theBankApiDBcontext db,ILogger<UsersRepo> logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
-        public Users Login(string username, string password)
+        public HashSet<Users> GetUsers()
         {
-            var result = db.Users.FirstOrDefault(u=>u.Username == username && u.Password == password);
-            return result;
+            return db.Users.AsNoTracking().ToHashSet();
         }
+
+        public Users Login(string username)
+        {
+           try
+            {
+                var result = db.Users.FirstOrDefault(u => u.Username == username);
+                return result;
+
+                //Username unikt!
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex,ex.Message);
+                return null;
+            }
+        }
+
 
         public bool Register(Users users, Customers customers)
         {
@@ -112,7 +132,7 @@ namespace Inlämningsuppgift3.Data.Repository
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    //Log it if fails for now console.writeline?
+                    logger.LogError(ex,ex.Message);
                     Console.WriteLine(ex.ToString());
                     return false;
                 }
@@ -127,6 +147,36 @@ namespace Inlämningsuppgift3.Data.Repository
             //skapa users
             //klar
 
+        }
+
+        public void UpdatePasses(HashSet<Users> users)
+        {
+            using(var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+
+                    foreach (var user in users)
+                    {
+                        var matchingUser = db.Users.FirstOrDefault(dbuser => dbuser.UserID == user.UserID);
+                        if (matchingUser != null)
+                        {
+                            matchingUser.Password = user.Password;
+                        }
+
+                    }
+
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex,ex.Message);
+                    transaction.Rollback();
+
+                }
+            }
         }
     }
 }

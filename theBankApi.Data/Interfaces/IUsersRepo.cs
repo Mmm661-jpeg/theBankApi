@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inlämningsuppgift3.Data.Interfaces
+namespace theBankApi.Data.Interfaces
 {
     public interface IUsersRepo
     {
         bool Register(Users users,Customers customers);
 
-        Users Login(string username,string password);
+        Users Login(string username);
+
+        HashSet<Users> GetUsers(); //For the hash script
+
+        void UpdatePasses(HashSet<Users> users);
 
     }
 }

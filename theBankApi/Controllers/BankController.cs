@@ -1,4 +1,4 @@
-﻿using Inlämningsuppgift3.Core.Interfaces;
+﻿using theBankApi.Core.Interfaces;
 using theBankApi.Domain.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using System.Security.Claims;
 
-namespace Inlämningsuppgift3.Controllers
+namespace theBankApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
