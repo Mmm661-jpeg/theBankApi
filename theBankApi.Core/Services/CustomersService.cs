@@ -1,0 +1,35 @@
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using theBankApi.Core.Interfaces;
+using theBankApi.Data.Interfaces;
+using theBankApi.Domain.DTOs;
+using theBankApi.Domain.Models;
+
+namespace theBankApi.Core.Services
+{
+    public class CustomersService:ICustomersService
+    {
+        private readonly ICustomersRepo customersRepo;
+        private readonly ILogger<CustomersService> logger;
+        private readonly IMapper mapper;
+
+        public CustomersService(ICustomersRepo customersRepo, ILogger<CustomersService> logger,IMapper mapper)
+        {
+            this.customersRepo = customersRepo;
+            this.logger = logger;
+            this.mapper = mapper;
+        }
+
+        public HashSet<CustomersDTO> GetCustomers(int pageNumber)
+        {
+            var dbCustomers = customersRepo.GetCustomers(pageNumber);
+            var result = mapper.Map<HashSet<CustomersDTO>>(dbCustomers);
+            return result;
+        }
+    }
+}
