@@ -44,6 +44,9 @@ builder.Services.AddTransient<IDispositionsRepo,DispositionsRepo>();
 builder.Services.AddTransient<IAccountTypesRepo,AccountTypesRepo>();
 builder.Services.AddTransient<IAccountsRepo,AccountsRepo>();
 
+builder.Services.AddScoped<ICustomersRepo,CustomersRepo>();
+builder.Services.AddScoped<ICustomersService,CustomersService>();
+
 builder.Services.AddTransient<IUsersService, UsersService>();
 builder.Services.AddTransient<IBankService, BankService>();
 
