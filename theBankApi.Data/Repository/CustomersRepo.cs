@@ -36,5 +36,26 @@ namespace theBankApi.Data.Repository
                 return new HashSet<Customers>();
             }
         }
+
+        public Customers GetCustomerById(int customerid)
+        {
+           try
+            {
+                var result = db.Customers.FirstOrDefault(dbCustomer => dbCustomer.CustomerId.Equals(customerid));
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return null;
+            }
+        }
     }
 }

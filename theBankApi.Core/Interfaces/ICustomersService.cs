@@ -11,5 +11,7 @@ namespace theBankApi.Core.Interfaces
     public interface ICustomersService
     {
         HashSet<CustomersDTO> GetCustomers(int pageNumber);
+
+        CustomersDTO GetCustomerById(int customerid);
     }
 }
