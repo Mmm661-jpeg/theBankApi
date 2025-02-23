@@ -25,6 +25,21 @@ namespace theBankApi.Core.Services
             this.mapper = mapper;
         }
 
+        public CustomersDTO GetCustomerById(int customerid)
+        {
+            try
+            {
+                var dbCustomer = customersRepo.GetCustomerById(customerid);
+                var result = mapper.Map<CustomersDTO>(dbCustomer);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return null;
+            }
+        }
+
         public HashSet<CustomersDTO> GetCustomers(int pageNumber)
         {
             var dbCustomers = customersRepo.GetCustomers(pageNumber);

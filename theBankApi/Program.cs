@@ -5,14 +5,14 @@ using theBankApi.Core.Services;
 using theBankApi.Data.DataModels;
 using theBankApi.Data.Interfaces;
 using theBankApi.Data.Repository;
-
-
 using theBankApi.Middleware.Validators;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.WebRequestMethods;
-
 using theBankApi.Middleware.Extensions;
 using theBankApi.Middleware.JWT;
+
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,16 +25,10 @@ builder.Services.AddAuthenticationExtentsion(
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddControllers();//test
+builder.Services.AddControllers();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-/*builder.Services.AddControllers().AddJsonOptions(options => //Ersätt genom att fixa DTO
-                                                            //Automapper
-{
-    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-});*/
 
 builder.Services.AddTransient<IUsersRepo,UsersRepo>();
 

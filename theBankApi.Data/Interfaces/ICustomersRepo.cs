@@ -10,5 +10,7 @@ namespace theBankApi.Data.Interfaces
     public interface ICustomersRepo
     {
         HashSet<Customers> GetCustomers(int pageNumber, int amount = 100);
+
+        Customers GetCustomerById(int customerID);
     }
 }
