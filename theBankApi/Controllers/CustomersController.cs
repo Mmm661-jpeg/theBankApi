@@ -97,5 +97,28 @@ namespace theBankApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("SearchCustomer")]
+        public IActionResult SearchCustomer([FromQuery] string keyword,int pagenumber)
+        {
+            var validationResult = pagenumberValidator.Validate(pagenumber);
+
+            if (!validationResult.IsValid)
+            {
+                BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
+            }
+
+            var result = customersService.SearchCustomers(keyword, pagenumber);
+
+            if (result.Count > 0)
+            {
+                return Ok(new { result = result });
+            }
+            else
+            {
+                return BadRequest(); //BadRequest?? something ele?
+            }
+
+        }
     }
 }
