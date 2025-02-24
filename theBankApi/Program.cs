@@ -59,13 +59,18 @@ builder.Services.AddDbContext<theBankApiDBcontext>(options =>
 
 builder.Services.AddSwaggerExtended();
 
-
-
-
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("P1", policy =>
+    {
+        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:5173");
+    });
+});
 
 var app = builder.Build();
 app.UseRouting();
+
+app.UseCors("P1");
 
 app.UseAuthentication();
 app.UseAuthorization();
