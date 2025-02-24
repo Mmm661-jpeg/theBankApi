@@ -61,7 +61,7 @@ namespace theBankApi.Data.Repository
 
         public HashSet<Customers> SearchCustomers(string keyword, int pageNumber, int amount = 100) //Filter to search by other collums?
         {
-            var searchResult = db.Customers.Where(dbCustomer => EF.Functions.Like(dbCustomer.Givenname, keyword));
+            var searchResult = db.Customers.Where(dbCustomer => EF.Functions.Like(dbCustomer.Givenname, $"{keyword}%"));
             var finalResult = searchResult.Skip((pageNumber - 1) * amount).Take(amount);
 
             return finalResult.ToHashSet();

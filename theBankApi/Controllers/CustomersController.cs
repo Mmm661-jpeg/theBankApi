@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using theBankApi.Core.Interfaces;
+using theBankApi.Domain.Models;
 using theBankApi.Middleware.Validators;
 
 namespace theBankApi.Controllers
@@ -99,7 +100,7 @@ namespace theBankApi.Controllers
         }
 
         [HttpGet("SearchCustomer")]
-        public IActionResult SearchCustomer([FromQuery] string keyword,int pagenumber)
+        public IActionResult SearchCustomer([FromQuery] string? keyword,int pagenumber)
         {
             var validationResult = pagenumberValidator.Validate(pagenumber);
 
@@ -110,13 +111,15 @@ namespace theBankApi.Controllers
 
             var result = customersService.SearchCustomers(keyword, pagenumber);
 
-            if (result.Count > 0)
+            if (result.Count < 0)
             {
-                return Ok(new { result = result });
+                return NoContent();
+                
             }
             else
             {
-                return BadRequest(); //BadRequest?? something ele?
+                Console.WriteLine(result.Count);
+                return Ok(new { result = result });
             }
 
         }
