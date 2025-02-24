@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace theBankApi.Data.Interfaces
         HashSet<Customers> GetCustomers(int pageNumber, int amount = 100);
 
         Customers GetCustomerById(int customerID);
+
+        HashSet<Customers> SearchCustomers(string keyword, int pageNumber, int amount = 100);
     }
 }

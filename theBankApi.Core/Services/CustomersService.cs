@@ -46,5 +46,16 @@ namespace theBankApi.Core.Services
             var result = mapper.Map<HashSet<CustomersDTO>>(dbCustomers);
             return result;
         }
+
+        public HashSet<CustomersDTO> SearchCustomers(string keyword, int pageNumber)
+        {
+            var dbSearchresult = customersRepo.SearchCustomers(keyword, pageNumber);
+
+            var result = mapper.Map<HashSet<CustomersDTO>>(dbSearchresult);
+
+            return result;
+
+            
+        }
     }
 }

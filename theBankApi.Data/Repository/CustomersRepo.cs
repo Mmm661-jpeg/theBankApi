@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,15 @@ namespace theBankApi.Data.Repository
                 logger.LogError(ex, ex.Message);
                 return null;
             }
+        }
+
+        public HashSet<Customers> SearchCustomers(string keyword, int pageNumber, int amount = 100) //Filter to search by other collums?
+        {
+            var searchResult = db.Customers.Where(dbCustomer => EF.Functions.Like(dbCustomer.Givenname, keyword));
+            var finalResult = searchResult.Skip((pageNumber - 1) * amount).Take(amount);
+
+            return finalResult.ToHashSet();
+            
         }
     }
 }

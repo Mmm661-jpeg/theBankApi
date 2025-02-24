@@ -13,5 +13,8 @@ namespace theBankApi.Core.Interfaces
         HashSet<CustomersDTO> GetCustomers(int pageNumber);
 
         CustomersDTO GetCustomerById(int customerid);
+
+        HashSet<CustomersDTO> SearchCustomers(string keyword, int pageNumber);
+
     }
 }
