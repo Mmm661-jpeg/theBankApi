@@ -17,7 +17,7 @@ namespace theBankApi.Controllers
             this.service = service;
         }
 
-        [HttpPost("Login")] 
+        [HttpPost("Login")] //GET -> Post now
         public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
             if(!ModelState.IsValid)
@@ -36,7 +36,7 @@ namespace theBankApi.Controllers
             }
         }
 
-        
+        //Auth senare
         [HttpPost("Register")]
         public IActionResult Register([FromBody] RegisterRequest request)
         {

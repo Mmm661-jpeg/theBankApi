@@ -42,7 +42,7 @@ namespace theBankApi.Controllers
 
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("GetCustomers")]
         public IActionResult GetCustomers([FromQuery] int pageNumber)
         {
@@ -65,7 +65,7 @@ namespace theBankApi.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize]
         [HttpGet("GetACustomer")]
         public IActionResult GetACustomer([FromQuery] int customerid) //Validate no nulls or 0??
         {
