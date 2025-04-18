@@ -13,12 +13,7 @@ namespace theBankApi.Controllers
     [Authorize]
     public class BankController : ControllerBase
     {
-        //1.PostMan (/RequestBODies??) [X]
-        //2.Validator/DTO/AUtoMapper [X]
-        //3.Test minimum 4 []
-        //förbättringar??
-        //4:Anteckning ta bort och lägg till strukturerat
-        //5:Loggin??
+        
         private readonly IBankService bankService;
         public BankController(IBankService bankService)
         {
@@ -44,7 +39,7 @@ namespace theBankApi.Controllers
 
 
 
-        [Authorize(Roles ="User")]
+        [Authorize]
         [HttpGet("GetAccountTypes")]
         public IActionResult GetAccountTypes()
         {
@@ -60,8 +55,8 @@ namespace theBankApi.Controllers
         }
 
         [Authorize(Roles ="User")]
-        [HttpGet("GetAllTransactions")]
-        public IActionResult GetAllTransactions()
+        [HttpGet("GetMyTransactions")]
+        public IActionResult GetMyTransactions()
         {
             var customerID = GetCid();
             if(customerID ==-1 ) { return BadRequest("CustomerID not found"); }
@@ -79,7 +74,7 @@ namespace theBankApi.Controllers
         }
 
         [Authorize(Roles ="Admin")]
-        [HttpGet("GetTransactions")]
+        [HttpGet("GetTransactions")] //changename
         public IActionResult GetTransactions([FromQuery] int accountID)
         {
             var result = bankService.GetTransactions(accountID);

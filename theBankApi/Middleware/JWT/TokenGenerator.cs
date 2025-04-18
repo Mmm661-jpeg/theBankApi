@@ -30,14 +30,14 @@ namespace theBankApi.Middleware.JWT
 
             };
 
-            if(users.Username == "Admin")
+            if(users.Username == configuration["JwtRoles:UserName"])
             {
-                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                claims.Add(new Claim(ClaimTypes.Role, configuration["JwtRoles:Role1"]));
             }
 
            else
             {
-                claims.Add(new Claim(ClaimTypes.Role, "User"));
+                claims.Add(new Claim(ClaimTypes.Role, configuration["JwtRoles:Role2"]));
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
