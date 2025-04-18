@@ -42,7 +42,7 @@ namespace theBankApi.Controllers
 
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetCustomers")]
         public IActionResult GetCustomers([FromQuery] int pageNumber)
         {
@@ -61,13 +61,13 @@ namespace theBankApi.Controllers
             }
             else
             {
-                return BadRequest(); //BadRequest?? something ele?
+                return BadRequest(); 
             }
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetACustomer")]
-        public IActionResult GetACustomer([FromQuery] int customerid) //Validate no nulls or 0??
+        public IActionResult GetACustomer([FromQuery] int customerid) 
         {
             var result = customersService.GetCustomerById(customerid);
             if (result != null)
@@ -81,6 +81,7 @@ namespace theBankApi.Controllers
             
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet("GetMyCustomer")]
         public IActionResult GetMyCustomer()
         {

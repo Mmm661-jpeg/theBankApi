@@ -13,12 +13,7 @@ namespace theBankApi.Controllers
     [Authorize]
     public class BankController : ControllerBase
     {
-        //1.PostMan (/RequestBODies??) [X]
-        //2.Validator/DTO/AUtoMapper [X]
-        //3.Test minimum 4 []
-        //förbättringar??
-        //4:Anteckning ta bort och lägg till strukturerat
-        //5:Loggin??
+        
         private readonly IBankService bankService;
         public BankController(IBankService bankService)
         {
